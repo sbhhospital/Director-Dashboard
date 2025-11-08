@@ -80,14 +80,14 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route
+        {/* <Route
           path="/dashboard/quick-task"
           element={
             <ProtectedRoute allowedRoles={["admin", "user"]}>
               <QuickTask />
             </ProtectedRoute>
           }
-        />
+        /> */}
         {/* Assign Task route - only for admin */}
         <Route
           path="/dashboard/assign-task"
@@ -99,42 +99,42 @@ function App() {
         />
 
         {/* Delegation route for user */}
-        <Route
+        {/* <Route
           path="/dashboard/delegation"
           element={
             <ProtectedRoute>
               <AccountDataPage />
             </ProtectedRoute>
           }
-        />
+        /> */}
 
         {/* Data routes */}
-        <Route
+        {/* <Route
           path="/dashboard/data/:category"
           element={
             <ProtectedRoute>
               <DataPage />
             </ProtectedRoute>
           }
-        />
+        /> */}
 
-        <Route
+        {/* <Route
           path="/dashboard/license"
           element={
             <ProtectedRoute>
               <License />
             </ProtectedRoute>
           }
-        />
+        /> */}
 
-        <Route
+        {/* <Route
           path="/dashboard/traning-video"
           element={
             <ProtectedRoute>
               <TrainingVideo />
             </ProtectedRoute>
           }
-        />
+        /> */}
 
         {/* Specific route for Admin Data Page */}
         <Route
@@ -149,11 +149,11 @@ function App() {
         {/* Backward compatibility redirects */}
         <Route path="/admin/*" element={<Navigate to="/dashboard/admin" replace />} />
         <Route path="/admin/dashboard" element={<Navigate to="/dashboard/admin" replace />} />
-        <Route parh="/admin/quick-task" element={<Navigate to="/dashboard/quick-task" replace />} />
+        {/* <Route parh="/admin/quick-task" element={<Navigate to="/dashboard/quick-task" replace />} /> */}
         <Route path="/admin/assign-task" element={<Navigate to="/dashboard/assign-task" replace />} />
-        <Route path="/admin/data/:category" element={<Navigate to="/dashboard/data/:category" replace />} />
-        <Route path="/admin/license" element={<Navigate to="/dashboard/license" replace />} />
-        <Route path="/admin/traning-video" element={<Navigate to="/dashboard/traning-video" replace />} />
+        {/* <Route path="/admin/data/:category" element={<Navigate to="/dashboard/data/:category" replace />} /> */}
+        {/* <Route path="/admin/license" element={<Navigate to="/dashboard/license" replace />} /> */}
+        {/* <Route path="/admin/traning-video" element={<Navigate to="/dashboard/traning-video" replace />} /> */}
         <Route path="/user/*" element={<Navigate to="/dashboard/admin" replace />} />
       </Routes>
     </Router>
