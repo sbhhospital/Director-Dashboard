@@ -24,7 +24,7 @@ const LoginPage = () => {
   const [isTyping, setIsTyping] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
 
-  const welcomeText = "Welcome To Sourabh Rolling Mill";
+  const welcomeText = "Welcome To Botivate";
   const typingSpeed = 100;
 
   useEffect(() => {
@@ -91,7 +91,7 @@ const LoginPage = () => {
           <div className="relative">
             {/* <div className="absolute -inset-4 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full blur opacity-20"></div> */}
             <img
-              src="/logo.png"
+              src="WhatsApp Image 2025-12-09 at 17.06.24.jpeg"
               alt="Company Logo"
               className="relative h-20 w-40  rounded-lg shadow-md"
             />

@@ -566,22 +566,22 @@ const HomePage = () => {
                                         <svg className="w-5 h-5 mr-3 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                         </svg>
-                                        <span className="text-gray-300">+917225061350 , </span>
-                                        <span className="text-gray-300">+918839494655</span>
+                                        {/* <span className="text-gray-300">+917225061350 , </span>
+                                        <span className="text-gray-300">+918839494655</span> */}
                                     </div>
                                 )}
                                 <div className="flex items-center justify-center md:justify-start">
                                     <svg className="w-5 h-5 mr-3 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                     </svg>
-                                    <span className="text-gray-300">admin@sagartmt.com</span>
+                                    <span className="text-gray-300">info@botivate.in</span>
                                 </div>
                                 <div className="flex items-center justify-center md:justify-start">
                                     <svg className="w-5 h-5 mr-3 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
-                                    <span className="text-gray-300">Achholi Road Kanhera , Urla Industrial Area<br />Raipur C.G.</span>
+                                    <span className="text-gray-300">Office No. 224 Block I Sri Ram Buisness Park Raipur CG</span>
                                 </div>
                             </div>
 
@@ -591,7 +591,7 @@ const HomePage = () => {
                             <h5 className="text-lg font-medium mb-4 text-red-400">Our Location</h5>
                             <div className="w-full h-48 md:h-64 lg:h-48">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d529.0000000000001!2d81.6093303!3d21.3333512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a28e700143df22d%3A0x89321ea274817173!2sSourabh%20Rolling%20Mill%20Pvt.%20Ltd.!5e0!3m2!1sen!2sin!4v1690000000000!5m2!1sen!2sin"
+                                    src="https://www.google.com/maps?q=21.282988041931297,81.70320181892319&hl=en&z=16&output=embed"
                                     width="100%"
                                     height="100%"
                                     style={{ border: 0 }}

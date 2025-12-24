@@ -240,7 +240,7 @@ export default function AdminLayout({ children }) {
           <div className="flex items-center">
             <div className="flex items-center motion-safe:animate-float">
               <img
-                src="/logo.png"
+                src="/WhatsApp Image 2025-12-09 at 17.06.24.jpeg"
                 alt="Logo"
                 className="w-22 h-11"
               />

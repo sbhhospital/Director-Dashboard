@@ -1,25 +1,24 @@
-import axios from "axios";
+// ============================================
+// DUMMY FRONTEND - HARDCODED ATTENDANCE DATA
+// No backend connection required
+// ============================================
 
-const BASE_URL = `${import.meta.env.VITE_API_BASE_USER_URL}/attendence`;
+// Hardcoded Attendance Data
+const HARDCODED_ATTENDANCE = [
+    { employee_id: "EMP001", status: "IN", monthly_attendance: 22 },
+    { employee_id: "EMP002", status: "IN", monthly_attendance: 20 },
+    { employee_id: "EMP003", status: "OUT", monthly_attendance: 18 },
+    { employee_id: "EMP004", status: "IN", monthly_attendance: 21 },
+    { employee_id: "EMP005", status: "OUT", monthly_attendance: 15 },
+];
 
-export const fetchAttendanceSummaryApi = async (
-    fromDate,
-    toDate
-) => {
-    try {
-        const params = {};
+export const fetchAttendanceSummaryApi = async (fromDate, toDate) => {
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 100));
 
-        if (fromDate) params.fromDate = fromDate;
-        if (toDate) params.toDate = toDate;
-
-        const res = await axios.get(BASE_URL, { params });
-
-        return { data: res.data };
-    } catch (err) {
-        return {
-            error:
-                err.response?.data?.message ||
-                "Failed to fetch attendance data",
-        };
-    }
+    return {
+        data: {
+            data: HARDCODED_ATTENDANCE
+        }
+    };
 };
