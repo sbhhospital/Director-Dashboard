@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@layer base {
+  html, body {
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
 /* Add this to your global CSS or within a style tag */
 .sticky-header {
     position: sticky;

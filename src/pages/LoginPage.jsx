@@ -93,7 +93,7 @@ const LoginPage = () => {
             <img
               src="WhatsApp_Image_2025-12-09_at_17.06.24-removebg-preview.png"
               alt="Company Logo"
-              className="relative h-40 w-50  rounded-lg shadow-md"
+              className="relative h-40 w-40 rounded-full object-cover shadow-md"
             />
           </div>
         </div>
@@ -101,10 +101,10 @@ const LoginPage = () => {
         {/* Typing Effect Header */}
         <div className="px-8 pt-6 pb-2 text-center">
           <div className="flex justify-center items-center">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-red-600 bg-clip-text text-transparent">
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-sky-400 to-blue-600 bg-clip-text text-transparent">
               {typedText}
               {isTyping && (
-                <span className="ml-1 inline-block w-[2px] h-7 bg-gradient-to-b from-blue-500 to-red-500 animate-pulse"></span>
+                <span className="ml-1 inline-block w-[2px] h-7 bg-gradient-to-b from-sky-500 to-blue-500 animate-pulse"></span>
               )}
             </h1>
           </div>
@@ -115,7 +115,7 @@ const LoginPage = () => {
           {/* Username Field with Animation */}
           <div className="relative group">
             <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2 ml-1">
-              <i className="fas fa-user mr-2 text-red-500"></i> Enter your username
+              <i className="fas fa-user mr-2 text-sky-500"></i> Enter your username
             </label>
             <div className="relative">
               <input
@@ -145,7 +145,7 @@ const LoginPage = () => {
           {/* Password Field with Animation */}
           <div className="relative group">
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2 ml-1">
-              <i className="fas fa-key mr-2 text-red-500"></i> Enter your password
+              <i className="fas fa-key mr-2 text-sky-500"></i> Enter your password
             </label>
             <div className="relative">
               <input
@@ -184,7 +184,7 @@ const LoginPage = () => {
             <button
               type="submit"
               disabled={isLoginLoading}
-              className="w-full py-3.5 px-4 bg-gradient-to-r from-red-400 to-red-400 
+              className="w-full py-3.5 px-4 bg-gradient-to-r from-sky-400 to-blue-600 
                        text-white font-medium rounded-xl shadow-lg hover:shadow-xl 
                        transform hover:-translate-y-0.5 transition-all duration-300 
                        disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none

@@ -16,9 +16,9 @@ function UnderConstruction() {
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4">
       <div className="text-center max-w-2xl">
         <div className="mb-8 relative">
-          <Construction className="w-32 h-32 mx-auto text-red-500 animate-bounce" />
+          <Construction className="w-32 h-32 mx-auto text-sky-500 animate-bounce" />
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-40 h-40 bg-red-100 rounded-full animate-ping opacity-20"></div>
+            <div className="w-40 h-40 bg-sky-100 rounded-full animate-ping opacity-20"></div>
           </div>
         </div>
         <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
@@ -122,6 +122,7 @@ export default function AdminLayout({ children }) {
     setSystems([]);
 
     window.location.replace("/login");
+
   };
 
 
@@ -201,7 +202,7 @@ export default function AdminLayout({ children }) {
 
   // Update the class dynamically based on activeRoute
   const getButtonClass = (routeId) => {
-    return `px-4 py-3 text-sm font-medium whitespace-nowrap hover:bg-white/20 transition-all border-r border-white/10 ${activeRoute === routeId ? "bg-gradient-to-r from-orange-500 to-red-500 shadow-lg" : ""
+    return `px-4 py-3 text-sm font-medium whitespace-nowrap hover:bg-white/20 transition-all border-r border-white/10 ${activeRoute === routeId ? "bg-gradient-to-r from-sky-400 to-blue-600 shadow-lg" : ""
       }`;
   };
 
@@ -238,12 +239,12 @@ export default function AdminLayout({ children }) {
         <div className="flex items-center justify-between px-4 py-5  ">
           {/* Logo with floating animation */}
           {/* <div className="flex items-center"> */}
-            <div className="flex items-center motion-safe:animate-float relative w-28 h-10 ">
-              <img
-                src="/WhatsApp_Image_2025-12-09_at_17.06.24-removebg-preview.png"
-                alt="Logo"
-                className="h-full w-full absolute object-cover"
-              />
+          <div className="flex items-center motion-safe:animate-float relative w-28 h-10 ">
+            <img
+              src="/WhatsApp_Image_2025-12-09_at_17.06.24-removebg-preview.png"
+              alt="Logo"
+              className="h-full w-full absolute object-cover"
+            />
             {/* </div> */}
           </div>
 
@@ -259,7 +260,7 @@ export default function AdminLayout({ children }) {
 
             <div
               onClick={handleLogout}
-              className="w-10 h-10 bg-red-600 hover:bg-red-900 rounded-full flex items-center justify-center cursor-pointer transition opacity-100 animate-bounce-in delay-1000"
+              className="w-10 h-10 bg-sky-600 hover:bg-sky-800 rounded-full flex items-center justify-center cursor-pointer transition opacity-100 animate-bounce-in delay-1000"
             >
               <LogOut className="text-white w-5 h-5" />
             </div>
@@ -268,7 +269,7 @@ export default function AdminLayout({ children }) {
       </header>
 
       {/* Top Navigation Bar - Red Gradient Style */}
-      <nav className="bg-gradient-to-r from-red-900 via-rose-600 to-gray-600 text-white sticky top-[64px] z-40 shadow-lg">
+      <nav className="bg-gradient-to-r from-sky-900 via-blue-600 to-sky-500 text-white sticky top-[64px] z-40 shadow-lg">
         <div className="flex items-center overflow-x-auto scrollbar-thin scrollbar-thumb-white/30 scrollbar-track-white/10">
           {topNavRoutes
             .filter((route) => {
@@ -325,7 +326,7 @@ export default function AdminLayout({ children }) {
                       setIsMobileMenuOpen(false);
                     }}
                     className={`w-full text-left px-4 py-3 rounded hover:bg-gray-100 ${activeRoute === route.id
-                      ? "bg-gradient-to-r from-red-500 to-gray-500 text-white"
+                      ? "bg-gradient-to-r from-sky-500 to-blue-500 text-white"
                       : ""
                       }`}
                   >
@@ -350,7 +351,7 @@ export default function AdminLayout({ children }) {
                   setEditSystem(null);
                   setShowSystemModal(true);
                 }}
-                className="bg-red-600 text-white px-4 py-2 rounded shadow"
+                className="bg-sky-600 text-white px-4 py-2 rounded shadow"
               >
                 + Add System
               </button>
@@ -449,7 +450,7 @@ export default function AdminLayout({ children }) {
                   type="submit"
                   disabled={isSavingSystem}
                   className={`px-4 py-2 rounded text-white flex items-center gap-2
-        ${isSavingSystem ? "bg-gray-400 cursor-not-allowed" : "bg-red-600"}
+        ${isSavingSystem ? "bg-gray-400 cursor-not-allowed" : "bg-sky-600"}
       `}
                 >
                   {isSavingSystem && (
