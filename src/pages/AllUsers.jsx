@@ -36,7 +36,7 @@ const HomePage = () => {
             department: "Director",
             designation: "Managing Director",
             location: "Raipur, CG",
-            joining_date: "Jan 2015",
+            joining_date: "Jan 2003",
             shift: "General Shift",
             role: "admin",
             number: "+91 99815 17979",
