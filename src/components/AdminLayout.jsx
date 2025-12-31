@@ -1,14 +1,8 @@
 import { useState, useEffect } from "react"
-import { LogOut, Search, Menu, X, ChevronDown, Bookmark, Code, GraduationCap, Award, Construction, Users, Target, Briefcase, TrendingUp, CheckCircle } from 'lucide-react'
+import { LogOut, X, Construction, Menu } from 'lucide-react'
 import { useNavigate } from "react-router-dom";
 import HomePage from "../pages/AllUsers";
-import {
-  fetchSystemsApi,
-  createSystemApi,
-  updateSystemApi,
-  deleteSystemApi,
-} from "../redux/api/systemsApi";
-import { fetchUserDetailsApi } from "../redux/api/settingApi";
+import { fetchSystemsApi, fetchUserDetailsApi, createSystemApi, updateSystemApi, deleteSystemApi } from "../api";
 
 // Under Construction Component
 function UnderConstruction() {
@@ -59,7 +53,7 @@ export default function AdminLayout({ children }) {
 
 
 
-  const DEFAULT_SYSTEMS = ["CHECKLIST COMBINED"];
+  const DEFAULT_SYSTEMS = ["CHECKLIST & DELEGATION"];
 
 
   const topNavRoutes = [
@@ -67,6 +61,36 @@ export default function AdminLayout({ children }) {
       id: "HOME",
       label: "HOME",
       url: "",
+    },
+    {
+      id: "CHECKLIST_DELEGATION",
+      label: "Checklist Delegation",
+      url: "https://new-checklist-deleagtion.vercel.app/",
+    },
+    {
+      id: "DOCUMENT_MANAGER",
+      label: "Document Manager",
+      url: "https://document-manger.vercel.app/",
+    },
+    {
+      id: "HR_FMS",
+      label: "HR FMS",
+      url: "https://sbh-hr-fms.vercel.app/",
+    },
+    {
+      id: "MAINTENANCE_MODULE",
+      label: "Maintenance Module",
+      url: "https://maintenance-module.vercel.app/",
+    },
+    {
+      id: "SUBSCRIPTION_MANAGER",
+      label: "Subscription Manager",
+      url: "https://subscription-manager-sbh.vercel.app/",
+    },
+    {
+      id: "PAYMENT_FMS",
+      label: "Payment FMS",
+      url: "https://payment-fms.vercel.app/",
     },
     ...systems.map((s) => ({
       id: s.systems,
@@ -202,7 +226,7 @@ export default function AdminLayout({ children }) {
 
   // Update the class dynamically based on activeRoute
   const getButtonClass = (routeId) => {
-    return `px-4 py-3 text-sm font-medium whitespace-nowrap hover:bg-white/20 transition-all border-r border-white/10 ${activeRoute === routeId ? "bg-gradient-to-r from-sky-400 to-blue-600 shadow-lg" : ""
+    return `px-4 py-3 text-sm font-medium whitespace-nowrap hover:bg-white/20 transition-all border-r border-white/10 ${activeRoute === routeId ? "bg-violet-400 shadow-lg mx-2 rounded-lg transform scale-105" : ""
       }`;
   };
 
@@ -231,21 +255,20 @@ export default function AdminLayout({ children }) {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden bg-white">
+    <div className="flex flex-col h-screen overflow-hidden bg-gradient-to-br from-violet-100 via-pink-100 to-sky-100">
       <header
-        className={`bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm transition-transform duration-300 ${isHeaderVisible ? "translate-y-0" : "-translate-y-full"
+        className={`bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50 shadow-sm transition-transform duration-300 ${isHeaderVisible ? "translate-y-0" : "-translate-y-full"
           }`}
       >
         <div className="flex items-center justify-between px-4 py-5  ">
           {/* Logo with floating animation */}
-          {/* <div className="flex items-center"> */}
           <div className="flex items-center motion-safe:animate-float relative w-28 h-10 ">
             <img
-              src="/WhatsApp_Image_2025-12-09_at_17.06.24-removebg-preview.png"
+              src="/SBH logo 1.png"
               alt="Logo"
-              className="h-full w-full absolute object-cover"
+              className="h-8 w-56"
             />
-            {/* </div> */}
+
           </div>
 
           {/* User Avatar with emoji animation */}
@@ -268,9 +291,21 @@ export default function AdminLayout({ children }) {
         </div>
       </header>
 
-      {/* Top Navigation Bar - Red Gradient Style */}
-      <nav className="bg-gradient-to-r from-sky-900 via-blue-600 to-sky-500 text-white sticky top-[64px] z-40 shadow-lg">
-        <div className="flex items-center overflow-x-auto scrollbar-thin scrollbar-thumb-white/30 scrollbar-track-white/10">
+      {/* Top Navigation Bar - Violet/Pink Gradient Style */}
+      <nav className="bg-violet-600 text-white sticky top-[64px] z-40 shadow-lg">
+        {/* Mobile Menu Trigger */}
+        <div className="md:hidden p-3">
+          <button
+            onClick={() => setIsMobileMenuOpen(true)}
+            className="flex items-center gap-2 px-4 py-2 hover:bg-white/10 rounded-lg transition-colors"
+          >
+            <Menu className="w-6 h-6" />
+            <span className="font-medium">Menu</span>
+          </button>
+        </div>
+
+        {/* Desktop Tabs */}
+        <div className="hidden md:flex items-center overflow-x-auto scrollbar-thin scrollbar-thumb-white/30 scrollbar-track-white/10">
           {topNavRoutes
             .filter((route) => {
               const routeId = route.id.toUpperCase();
@@ -296,53 +331,64 @@ export default function AdminLayout({ children }) {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-50 bg-black bg-opacity-50" onClick={() => setIsMobileMenuOpen(false)}>
-          <div className="absolute top-0 right-0 w-80 h-full bg-white shadow-2xl overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-            <div className="p-4 border-b border-gray-200 flex items-center justify-between">
-              <span className="font-bold text-lg">Menu</span>
-              <button onClick={() => setIsMobileMenuOpen(false)}>
-                <X className="h-6 w-6" />
-              </button>
-            </div>
-            <div className="p-4 space-y-2">
-              {topNavRoutes
-                .filter((route) => {
-                  const routeId = route.id.toUpperCase();
-                  const usernameLower = username?.toLowerCase();
+      {/* Mobile Menu Overlay & Drawer with Smooth Animation */}
+      <div 
+        className={`lg:hidden fixed inset-0 z-50 transition-all duration-300 ease-in-out ${
+          isMobileMenuOpen ? "bg-black/50 opacity-100 visible" : "bg-black/0 opacity-0 invisible"
+        }`} 
+        onClick={() => setIsMobileMenuOpen(false)}
+      >
+        <div 
+          className={`absolute top-0 right-0 w-80 h-full bg-white shadow-2xl overflow-y-auto transform transition-transform duration-300 ease-out ${
+            isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="p-4 border-b border-gray-200 flex items-center justify-between">
+            <span className="font-bold text-lg">Menu</span>
+            <button 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            >
+              <X className="h-6 w-6" />
+            </button>
+          </div>
+          <div className="p-4 space-y-2">
+            {topNavRoutes
+              .filter((route) => {
+                const routeId = route.id.toUpperCase();
+                const usernameLower = username?.toLowerCase();
 
-                  if (usernameLower === "admin") return true;
-                  if (routeId === "HOME") return true;
-                  if (DEFAULT_SYSTEMS.includes(routeId)) return true;
+                if (usernameLower === "admin") return true;
+                if (routeId === "HOME") return true;
+                if (DEFAULT_SYSTEMS.includes(routeId)) return true;
 
-                  return systemAccessList.includes(routeId);
-                })
-                .map((route) => (
-                  <button
-                    key={route.id}
-                    onClick={() => {
-                      handleRouteClick(route.url, route.id);
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className={`w-full text-left px-4 py-3 rounded hover:bg-gray-100 ${activeRoute === route.id
-                      ? "bg-gradient-to-r from-sky-500 to-blue-500 text-white"
-                      : ""
-                      }`}
-                  >
-                    {route.label}
-                  </button>
-                ))}
+                return systemAccessList.includes(routeId);
+              })
+              .map((route) => (
+                <button
+                  key={route.id}
+                  onClick={() => {
+                    handleRouteClick(route.url, route.id);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 font-medium ${activeRoute === route.id
+                    ? "bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-md transform scale-[1.02]"
+                    : "text-gray-700 hover:bg-gray-50 hover:pl-6"
+                    }`}
+                >
+                  {route.label}
+                </button>
+              ))}
 
-            </div>
           </div>
         </div>
-      )}
+      </div>
 
       {/* Main Content Layout */}
       <div className="flex flex-1 overflow-hidden">
 
-        <main className="flex-1 overflow-y-auto bg-white">
+        <main className="flex-1 overflow-y-auto bg-transparent">
 
           {isAdmin && !isIframeVisible && !showUnderConstruction && (
             <div className="p-4 flex justify-end">
@@ -372,7 +418,7 @@ export default function AdminLayout({ children }) {
                   src={currentUrl}
                   className="w-full h-full border-0"
                   title="External Content"
-                  // sandbox="allow-forms allow-modals allow-scripts allow-same-origin allow-storage-access-by-user-activation"
+
                   allow="*"
                   allowFullScreen
                 />

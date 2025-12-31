@@ -1,17 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../redux/slice/loginSlice";
 import { Eye, EyeOff } from "lucide-react";
 
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const { isLoggedIn, userData, error } = useSelector((state) => state.login);
 
   const [isLoginLoading, setIsLoginLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -24,7 +19,7 @@ const LoginPage = () => {
   const [isTyping, setIsTyping] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
 
-  const welcomeText = "Welcome To Botivate";
+  const welcomeText = "Welcome To SBH Hospital";
   const typingSpeed = 100;
 
   useEffect(() => {
@@ -43,33 +38,45 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoginLoading(true);
-    dispatch(loginUser(formData));
-  };
 
-  useEffect(() => {
-    if (isLoggedIn && userData) {
-      setIsLoginLoading(false);
+    // Mock API simulation
+    setTimeout(() => {
+      const { username, password } = formData;
+      let userData = null;
 
-      // console.log("User Data:", userData);
+      if (username === 'Am Sir' && password === 'Am123') {
+        userData = {
+          user_name: "Am Sir",
+          username: "Am Sir",
+          role: "admin",
+          email_id: "admin@example.com",
+          system_access: "CHECKLIST & DELEGATION,HRMS"
+        };
+      } else if (username.toLowerCase() === 'user' && password === 'user123') {
+        userData = {
+          user_name: "John Doe",
+          username: "user",
+          role: "user",
+          email_id: "john.doe@example.com",
+          system_access: "CHECKLIST & DELEGATION"
+        };
+      }
 
-      // Save data once
-      localStorage.setItem("user-name", userData.user_name || userData.username || "");
-      localStorage.setItem("role", userData.role || "");
-      localStorage.setItem("email_id", userData.email_id || userData.email || "");
-      localStorage.setItem("system_access", userData.system_access);
+      if (userData) {
+        setIsLoginLoading(false);
+        // Save data
+        localStorage.setItem("user-name", userData.user_name || userData.username || "");
+        localStorage.setItem("role", userData.role || "");
+        localStorage.setItem("email_id", userData.email_id || userData.email || "");
+        localStorage.setItem("system_access", userData.system_access);
 
-      if (userData.role === "admin") {
         navigate("/dashboard/admin", { replace: true });
       } else {
-        navigate("/dashboard/admin", { replace: true });
+        setIsLoginLoading(false);
+        showToast("Invalid credentials", "error");
       }
-    }
-
-    if (error) {
-      setIsLoginLoading(false);
-      showToast(error, "error");
-    }
-  }, [isLoggedIn, userData, error, navigate]);
+    }, 1000);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -91,9 +98,9 @@ const LoginPage = () => {
           <div className="relative">
             {/* <div className="absolute -inset-4 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full blur opacity-20"></div> */}
             <img
-              src="WhatsApp_Image_2025-12-09_at_17.06.24-removebg-preview.png"
+              src="sbh.jpeg"
               alt="Company Logo"
-              className="relative h-40 w-40 rounded-full object-cover shadow-md"
+              className="relative h-22 rounded-xl object-cover shadow-md"
             />
           </div>
         </div>

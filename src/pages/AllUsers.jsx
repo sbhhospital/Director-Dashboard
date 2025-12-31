@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react"
-import { fetchUserDetailsApi, patchSystemAccessApi } from "../redux/api/settingApi";
-import { fetchSystemsApi } from "../redux/api/systemsApi";
-import { fetchAttendanceSummaryApi } from "../redux/api/attendenceApi";
-import { Award, Target } from "lucide-react";
+import { Award, Target, MapPin, Briefcase, Calendar, Layers, Clock } from "lucide-react";
 import searchIcon from "../assets/search-icon-logo.png";
+import { fetchUserDetailsApi, fetchSystemsApi, fetchAttendanceSummaryApi, patchSystemAccessApi } from "../api";
 
 const HomePage = () => {
     const [userDetails, setUserDetails] = useState(null);
@@ -35,34 +33,46 @@ const HomePage = () => {
             id: 1,
             employee_id: "EMP001",
             user_name: "Admin User",
-            department: "Management",
+            department: "Director",
+            designation: "Managing Director",
+            location: "Raipur, CG",
+            joining_date: "Jan 2015",
+            shift: "General Shift",
             role: "admin",
-            number: "+91 98765 43210",
-            email_id: "admin@example.com",
+            number: "+91 99815 17979",
+            email_id: "dram@sbhhospital.com",
             status: "active",
-            system_access: "CHECKLIST COMBINED,HR PORTAL"
+            system_access: "CHECKLIST & DELEGATION,HRMS,DOCUMENT MANAGER,MAINTENANCE MODULE,SUBSCRIPTION MANAGER,PAYMENT FMS"
         },
         {
             id: 2,
             employee_id: "EMP002",
             user_name: "John Doe",
             department: "IT",
+            designation: "IT Manager",
+            location: "Raipur, CG",
+            joining_date: "Jun 2018",
+            shift: "General Shift",
             role: "user",
             number: "+91 98765 43211",
             email_id: "john.doe@example.com",
             status: "active",
-            system_access: "CHECKLIST COMBINED"
+            system_access: "CHECKLIST & DELEGATION"
         },
         {
             id: 3,
             employee_id: "EMP003",
             user_name: "Jane Smith",
             department: "HR",
+            designation: "HR Executive",
+            location: "Raipur, CG",
+            joining_date: "Sep 2020",
+            shift: "Morning Shift",
             role: "user",
             number: "+91 98765 43212",
             email_id: "jane.smith@sourabhrollingmills.com",
             status: "active",
-            system_access: "HR PORTAL"
+            system_access: "HRMS"
         }
     ];
 
@@ -165,95 +175,15 @@ const HomePage = () => {
 
     return (
         <div className="w-full">
-            <section className="py-4 md:py-4 bg-white">
+            <section className="py-4 md:py-4 bg-transparent">
                 <div className="container mx-auto px-4 md:px-8">
-                    {localStorage.getItem("user-name")?.toLowerCase() === "admin" && (
-                        <div className="max-w-5xl mx-auto text-center mb-16">
-                            <div className="inline-block p-2 px-6 rounded-full bg-sky-50 border border-sky-100 mb-6 shadow-sm">
-                                <span className="text-sky-600 font-semibold tracking-wider text-sm uppercase">Welcome Dashboard</span>
-                            </div>
-
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight leading-tight">
-                                Welcome To <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-500 to-blue-700">Sourabh Rolling Mill</span>
-                            </h2>
-
-                            <div className="h-12 flex items-center justify-center">
-                                <p className="typing-effect text-xl md:text-2xl font-medium text-gray-500 leading-relaxed">
-                                    मजबूती और विश्वास है हम।
-                                </p>
-                            </div>
-                            <div className="mt-12 bg-white rounded-3xl shadow-xl border border-gray-100 p-8 md:p-12 relative overflow-hidden group hover:shadow-2xl transition-all duration-500">
-                                <div className="absolute top-0 right-0 w-64 h-64 bg-sky-50 rounded-full mix-blend-multiply filter blur-3xl opacity-30 -mr-32 -mt-32"></div>
-                                <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-50 rounded-full mix-blend-multiply filter blur-3xl opacity-30 -ml-32 -mb-32"></div>
-
-                                <h2 className="relative text-3xl font-bold text-gray-800 mb-6 text-center">
-                                    About Us
-                                    <div className="w-16 h-1 bg-sky-500 mx-auto mt-2 rounded-full"></div>
-                                </h2>
-
-                                <p className="relative text-lg text-gray-600 leading-relaxed text-center max-w-4xl mx-auto">
-                                    Sourabh Rolling Mills Pvt. Ltd., a premium manufacturing unit of Pankaj Group,
-                                    is located in Village Kanhera, Urla Industrial Area, Raipur, Chhattisgarh.
-                                    As one of the leading companies within Pankaj Group,
-                                    Sourabh Rolling Mills is synonymous with quality and innovation in the steel industry.
-                                    Specializing in the production of billets, strips (Patra), and high-quality steel pipes,
-                                    Sourabh Rolling Mills adheres to stringent BIS norms. Our facility boasts multiple automatic rolling mills,
-                                    ensuring efficiency and precision in our manufacturing processes. The company employs over 2,700 direct and
-                                    indirect dedicated and highly talented workforce members, fostering a culture of excellence and continuous improvement.
-                                </p>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-                                <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group">
-                                    <div className="w-16 h-16 mx-auto bg-sky-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-sky-100 transition-colors">
-                                        <Target className="w-8 h-8 text-sky-600" />
-                                    </div>
-                                    <h3 className="text-2xl font-bold text-gray-800 mb-3">Our Mission</h3>
-                                    <p className="text-gray-600">
-                                        Mission creating happiness through achievements
-                                    </p>
-                                </div>
-
-                                <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group">
-                                    <div className="w-16 h-16 mx-auto bg-blue-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors">
-                                        <Award className="w-8 h-8 text-blue-600" />
-                                    </div>
-                                    <h3 className="text-2xl font-bold text-gray-800 mb-3">Our Vision</h3>
-                                    <p className="text-gray-600">
-                                        Vision becoming a humble man with high values and creative mind set.
-                                    </p>
-                                </div>
-                            </div>
-                            <style>
-                                {`
-                                .typing-effect {
-                                    white-space: nowrap;
-                                    overflow: hidden;
-                                    width: 0;
-                                    animation: typing 4s steps(60, end) forwards;
-                                }
-
-                                @keyframes typing {
-                                    from { width: 0 }
-                                    to { width: 80% }
-                                }
-
-                                @keyframes blink {
-                                    0% { border-color: transparent }
-                                    50% { border-color: #4b5563 }
-                                    100% { border-color: transparent }
-                                }
-                                `}
-                            </style>
-                        </div>
-                    )}
                     {localStorage.getItem("user-name")?.toLowerCase() !== "admin" && (
                         <div>
                             <div className="grid grid-cols md:grid-cols">
                                 {/* Employee Card - Dynamic based on API data */}
-                                {/* Employee Card - Dynamic based on API data */}
                                 <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 transition-all hover:shadow-2xl mb-8">
                                     {/* Decorative Header Banner */}
-                                    <div className="h-32 bg-gradient-to-r from-sky-400 to-blue-600 relative">
+                                    <div className="h-32 bg-gradient-to-r from-blue-200 via-sky-blue-400 to-green-300 relative">
                                         <div className="absolute top-0 right-0 w-40 h-40 bg-white opacity-10 rounded-full -mr-10 -mt-10"></div>
                                         <div className="absolute bottom-0 left-0 w-20 h-20 bg-white opacity-10 rounded-full -ml-5 -mb-5"></div>
                                     </div>
@@ -266,7 +196,7 @@ const HomePage = () => {
                                                     <img
                                                         src={
                                                             userDetails?.employee_id
-                                                                ? `/employees/${userDetails.employee_id}.jpg`
+                                                                ? `/am sir.jpg`
                                                                 : "/user.png"
                                                         }
                                                         alt="Employee"
@@ -276,7 +206,7 @@ const HomePage = () => {
                                                         }}
                                                     />
                                                 </div>
-                                                <div className={`absolute bottom-2 right-2 w-5 h-5 border-4 border-white rounded-full shadow-sm ${userDetails?.status === "active" ? "bg-green-500" : "bg-red-500"}`}></div>
+                                                <div className={`absolute bottom-2 right-2 w-5 h-5 border-4 border-white rounded-full shadow-sm ${userDetails?.status === "active" ? "bg-green-500 animate-pulse" : "bg-red-500"}`}></div>
                                             </div>
 
                                             {/* Info Section */}
@@ -304,16 +234,40 @@ const HomePage = () => {
                                                         </div>
 
                                                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-6 text-sm">
-                                                            <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100 hover:bg-sky-50 hover:border-sky-100 transition-all group">
-                                                                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform">
-                                                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" /></svg>
+                                                            {/* Designation */}
+                                                            <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100 hover:bg-orange-50 hover:border-orange-100 transition-all group">
+                                                                <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 group-hover:scale-110 transition-transform">
+                                                                    <Briefcase className="w-5 h-5" />
                                                                 </div>
                                                                 <div className="text-left">
-                                                                    <p className="text-gray-500 text-xs uppercase tracking-wider font-semibold">Employee ID</p>
-                                                                    <p className="font-bold text-gray-800">{userDetails.employee_id || "N/A"}</p>
+                                                                    <p className="text-gray-500 text-xs uppercase tracking-wider font-semibold">Designation</p>
+                                                                    <p className="font-bold text-gray-800">{userDetails.designation || "N/A"}</p>
                                                                 </div>
                                                             </div>
 
+                                                            {/* Location */}
+                                                            <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100 hover:bg-indigo-50 hover:border-indigo-100 transition-all group">
+                                                                <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 group-hover:scale-110 transition-transform">
+                                                                    <MapPin className="w-5 h-5" />
+                                                                </div>
+                                                                <div className="text-left">
+                                                                    <p className="text-gray-500 text-xs uppercase tracking-wider font-semibold">Location</p>
+                                                                    <p className="font-bold text-gray-800">{userDetails.location || "Raipur, CG"}</p>
+                                                                </div>
+                                                            </div>
+
+                                                            {/* Joining Date */}
+                                                            <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100 hover:bg-pink-50 hover:border-pink-100 transition-all group">
+                                                                <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 group-hover:scale-110 transition-transform">
+                                                                    <Calendar className="w-5 h-5" />
+                                                                </div>
+                                                                <div className="text-left">
+                                                                    <p className="text-gray-500 text-xs uppercase tracking-wider font-semibold">Joined</p>
+                                                                    <p className="font-bold text-gray-800">{userDetails.joining_date || "N/A"}</p>
+                                                                </div>
+                                                            </div>
+
+                                                            {/* Email */}
                                                             <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100 hover:bg-purple-50 hover:border-purple-100 transition-all group">
                                                                 <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 group-hover:scale-110 transition-transform">
                                                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
@@ -324,6 +278,7 @@ const HomePage = () => {
                                                                 </div>
                                                             </div>
 
+                                                            {/* Contact */}
                                                             <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100 hover:bg-green-50 hover:border-green-100 transition-all group">
                                                                 <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 group-hover:scale-110 transition-transform">
                                                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
@@ -331,6 +286,28 @@ const HomePage = () => {
                                                                 <div className="text-left">
                                                                     <p className="text-gray-500 text-xs uppercase tracking-wider font-semibold">Contact</p>
                                                                     <p className="font-bold text-gray-800">{userDetails.number || "N/A"}</p>
+                                                                </div>
+                                                            </div>
+
+                                                            {/* System Access Count */}
+                                                            <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100 hover:bg-cyan-50 hover:border-cyan-100 transition-all group">
+                                                                <div className="w-10 h-10 rounded-full bg-cyan-100 flex items-center justify-center text-cyan-600 group-hover:scale-110 transition-transform">
+                                                                    <Layers className="w-5 h-5" />
+                                                                </div>
+                                                                <div className="text-left">
+                                                                    <p className="text-gray-500 text-xs uppercase tracking-wider font-semibold">Systems</p>
+                                                                    <p className="font-bold text-gray-800">{userDetails.system_access ? userDetails.system_access.split(',').length : 0} Apps</p>
+                                                                </div>
+                                                            </div>
+
+                                                            {/* Shift */}
+                                                            <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100 hover:bg-yellow-50 hover:border-yellow-100 transition-all group">
+                                                                <div className="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 group-hover:scale-110 transition-transform">
+                                                                    <Clock className="w-5 h-5" />
+                                                                </div>
+                                                                <div className="text-left">
+                                                                    <p className="text-gray-500 text-xs uppercase tracking-wider font-semibold">Shift</p>
+                                                                    <p className="font-bold text-gray-800">{userDetails.shift || "General"}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -346,142 +323,6 @@ const HomePage = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="grid grid-cols-2 gap-2 mt-4">
-                                <div className="bg-white rounded-xl shadow-md overflow-hidden">
-                                    <div className="p-6 text-center">
-                                        <h3 className="text-md font-bold text-gray-800 mb-2">
-                                            Today's Tasks
-                                        </h3>
-
-                                        <p className="text-yellow-600 font-semibold text-lg">
-                                            Upcoming...<span className="text-green-600"></span>
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className="bg-white rounded-xl shadow-md overflow-hidden">
-                                    <div className="p-6 text-center">
-                                        <h3 className="text-md font-bold text-gray-800 mb-2">
-                                            Attendance
-                                        </h3>
-
-                                        {attendance ? (
-                                            <div className="font-semibold text-xl text-yellow-600">
-                                                {attendance.monthly_attendance}
-                                                <span className="text-green-600">
-                                                    /{new Date().getDate()}
-                                                </span>
-
-                                                <div className="text-gray-800 text-sm font-normal mt-1">
-                                                    Today :{" "}
-                                                    <span
-                                                        className={
-                                                            attendance.status === "IN"
-                                                                ? "text-green-600"
-                                                                : "text-red-600"
-                                                        }
-                                                    >
-                                                        {attendance.status === "IN" ? "Present" : "Absent"}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        ) : (
-                                            <div className="text-gray-400 text-sm">
-                                                Attendance not available
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div className="bg-white rounded-xl shadow-md overflow-hidden">
-                                <div className="bg-white rounded-xl shadow-md overflow-hidden">
-                                    <div className="p-3">
-                                        {/* Header */}
-                                        <div className="flex justify-between items-center mb-4">
-                                            <h3 className="text-md font-bold text-gray-800">Overall Progress</h3>
-                                            {/* <span className="text-blue-500">📊</span> */}
-                                        </div>
-
-                                        <div className="flex items-center gap-6">
-                                            {/* CIRCLE */}
-                                            <div className="relative w-36 h-36">
-                                                <svg className="w-full h-full rotate-[-90deg]">
-                                                    {/* Background */}
-                                                    <circle
-                                                        cx="72"
-                                                        cy="72"
-                                                        r="60"
-                                                        stroke="#a7b0c0ff"
-                                                        strokeWidth="12"
-                                                        fill="none"
-                                                    />
-
-                                                    {/* Completed */}
-                                                    <circle
-                                                        cx="72"
-                                                        cy="72"
-                                                        r="60"
-                                                        stroke="#10b981"
-                                                        strokeWidth="12"
-                                                        fill="none"
-                                                        strokeDasharray="377"
-                                                        strokeDashoffset="57"
-                                                        strokeLinecap="line"
-                                                    />
-
-                                                    {/* Pending */}
-                                                    <circle
-                                                        cx="72"
-                                                        cy="72"
-                                                        r="60"
-                                                        stroke="#f59e0b"
-                                                        strokeWidth="12"
-                                                        fill="none"
-                                                        strokeDasharray="377"
-                                                        strokeDashoffset="321"
-                                                        strokeLinecap="line"
-                                                    />
-                                                </svg>
-
-                                                {/* CENTER TEXT */}
-                                                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                                    <span className="text-3xl font-bold text-indigo-600">00.0%</span>
-                                                    <span className="text-xs text-gray-500">Overall</span>
-                                                </div>
-                                            </div>
-
-                                            {/* LEGEND */}
-                                            <div className="space-y-2 text-sm">
-                                                <div className="flex items-center gap-2">
-                                                    <span className="w-3 h-3 rounded-full bg-green-500"></span>
-                                                    <span className="font-medium">Completed:</span>
-                                                    <span className="text-gray-600">0.0%</span>
-                                                </div>
-
-                                                <div className="flex items-center gap-2">
-                                                    <span className="w-3 h-3 rounded-full bg-orange-500"></span>
-                                                    <span className="font-medium">Pending:</span>
-                                                    <span className="text-gray-600">0.0%</span>
-                                                </div>
-
-                                                <div className="flex items-center gap-2">
-                                                    <span className="w-3 h-3 rounded-full bg-gray-400"></span>
-                                                    <span className="font-medium">Not Done:</span>
-                                                    <span className="text-gray-600">0.0%</span>
-                                                </div>
-
-                                                <div className="flex items-center gap-2">
-                                                    <span className="w-3 h-3 rounded-full bg-red-500"></span>
-                                                    <span className="font-medium">Overdue:</span>
-                                                    <span className="text-gray-600">0.0%</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     )}
 
@@ -676,22 +517,27 @@ const HomePage = () => {
                                         <svg className="w-5 h-5 mr-3 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                         </svg>
-                                        {/* <span className="text-gray-300">+917225061350 , </span>
-                                        <span className="text-gray-300">+918839494655</span> */}
+
                                     </div>
                                 )}
                                 <div className="flex items-center justify-center md:justify-start">
                                     <svg className="w-5 h-5 mr-3 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                     </svg>
-                                    <span className="text-gray-300">info@botivate.in</span>
+                                    <span className="text-gray-300">enquiry.women@sbhhospital.com</span>
+                                </div>
+                                <div className="flex items-center justify-center md:justify-start">
+                                    <svg className="w-5 h-5 mr-3 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg>
+                                    <span className="text-gray-300">enquiry.eye@sbhhospital.com</span>
                                 </div>
                                 <div className="flex items-center justify-center md:justify-start">
                                     <svg className="w-5 h-5 mr-3 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
-                                    <span className="text-gray-300">Office No. 224 Block I Sri Ram Buisness Park Raipur CG</span>
+                                    <span className="text-gray-300">Main Rd, opposite vijeta complex, New Rajendra Nagar, Raipur, Tikrapara, Chhattisgarh 492001, India</span>
                                 </div>
                             </div>
 
@@ -701,7 +547,7 @@ const HomePage = () => {
                             <h5 className="text-lg font-medium mb-4 text-sky-400">Our Location</h5>
                             <div className="w-full h-48 md:h-64 lg:h-48">
                                 <iframe
-                                    src="https://www.google.com/maps?q=21.282988041931297,81.70320181892319&hl=en&z=16&output=embed"
+                                    src="https://www.google.com/maps?q=21.2252643564464, 81.65917230194445&hl=en&z=16&output=embed"
                                     width="100%"
                                     height="100%"
                                     style={{ border: 0 }}
