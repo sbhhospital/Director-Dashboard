@@ -4,6 +4,14 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import LoginPage from "./pages/LoginPage";
 import AdminDashboard from "./pages/Dashboard";
 
+const RedirectIfAuthenticated = ({ children }) => {
+  const username = localStorage.getItem("user-name");
+  if (username) {
+    return <Navigate to="/dashboard/admin" replace />;
+  }
+  return children;
+};
+
 const ProtectedRoute = ({ children }) => {
   const username = localStorage.getItem("user-name");
 
@@ -20,8 +28,23 @@ function App() {
     <Router>
       <Routes>
 
-        <Route path="/" element={<Navigate to="/login" replace />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/"
+          element={
+            <RedirectIfAuthenticated>
+              <Navigate to="/login" replace />
+            </RedirectIfAuthenticated>
+          }
+        />
+
+        <Route
+          path="/login"
+          element={
+            <RedirectIfAuthenticated>
+              <LoginPage />
+            </RedirectIfAuthenticated>
+          }
+        />
 
         {/* ✔ ANY LOGGED-IN USER CAN ACCESS THIS */}
         <Route

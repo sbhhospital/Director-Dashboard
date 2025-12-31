@@ -8,6 +8,14 @@ import { Eye, EyeOff } from "lucide-react";
 const LoginPage = () => {
   const navigate = useNavigate();
 
+  // Check if user is already logged in
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user-name");
+    if (storedUser) {
+      navigate("/dashboard/admin", { replace: true });
+    }
+  }, [navigate]);
+
   const [isLoginLoading, setIsLoginLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
@@ -62,10 +70,10 @@ const LoginPage = () => {
         };
       }
 
-      if (userData) {
+      if (userData && (userData.user_name || userData.username)) {
         setIsLoginLoading(false);
         // Save data
-        localStorage.setItem("user-name", userData.user_name || userData.username || "");
+        localStorage.setItem("user-name", userData.user_name || userData.username);
         localStorage.setItem("role", userData.role || "");
         localStorage.setItem("email_id", userData.email_id || userData.email || "");
         localStorage.setItem("system_access", userData.system_access);

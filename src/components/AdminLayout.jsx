@@ -53,7 +53,7 @@ export default function AdminLayout({ children }) {
 
 
 
-  const DEFAULT_SYSTEMS = ["CHECKLIST & DELEGATION"];
+  const DEFAULT_SYSTEMS = ["CHECKLIST_DELEGATION", "PAYMENT_FMS"];
 
 
   const topNavRoutes = [
@@ -65,7 +65,7 @@ export default function AdminLayout({ children }) {
     {
       id: "CHECKLIST_DELEGATION",
       label: "Checklist Delegation",
-      url: "https://new-checklist-deleagtion.vercel.app/",
+      url: "https://new-checklist-delegation.vercel.app/",
     },
     {
       id: "DOCUMENT_MANAGER",
@@ -332,21 +332,19 @@ export default function AdminLayout({ children }) {
       </nav>
 
       {/* Mobile Menu Overlay & Drawer with Smooth Animation */}
-      <div 
-        className={`lg:hidden fixed inset-0 z-50 transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen ? "bg-black/50 opacity-100 visible" : "bg-black/0 opacity-0 invisible"
-        }`} 
+      <div
+        className={`lg:hidden fixed inset-0 z-50 transition-all duration-300 ease-in-out ${isMobileMenuOpen ? "bg-black/50 opacity-100 visible" : "bg-black/0 opacity-0 invisible"
+          }`}
         onClick={() => setIsMobileMenuOpen(false)}
       >
-        <div 
-          className={`absolute top-0 right-0 w-80 h-full bg-white shadow-2xl overflow-y-auto transform transition-transform duration-300 ease-out ${
-            isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+        <div
+          className={`absolute top-0 right-0 w-80 h-full bg-white shadow-2xl overflow-y-auto transform transition-transform duration-300 ease-out ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+            }`}
           onClick={(e) => e.stopPropagation()}
         >
           <div className="p-4 border-b border-gray-200 flex items-center justify-between">
             <span className="font-bold text-lg">Menu</span>
-            <button 
+            <button
               onClick={() => setIsMobileMenuOpen(false)}
               className="p-2 hover:bg-gray-100 rounded-full transition-colors"
             >
