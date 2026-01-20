@@ -2,7 +2,7 @@ export const USERS = [
     {
         user_name: "Am Sir",
         username: "Am Sir",
-        password: "Am123",
+        password: import.meta.env.VITE_AUTH_ADMIN_PASSWORD,
         role: "admin",
         email_id: "admin@example.com",
         system_access: "CHECKLIST & DELEGATION,HRMS",
@@ -10,7 +10,7 @@ export const USERS = [
     {
         user_name: "Jharna Ambulkar",
         username: "Jharna Ambulkar",
-        password: "Jharna@123",
+        password: import.meta.env.VITE_AUTH_JHARNA_PASSWORD,
         role: "user",
         email_id: "admin.executive@sbhhospital.com",
         mobile_number: "91796 36600",
@@ -19,7 +19,7 @@ export const USERS = [
     {
         user_name: "GEETANJALI DEEP",
         username: "GEETANJALI DEEP",
-        password: "GEETANJALI@123",
+        password: import.meta.env.VITE_AUTH_GEETANJALI_PASSWORD,
         role: "user",
         email_id: "hr@sbhhospital.com",
         mobile_number: "96444 92116",
