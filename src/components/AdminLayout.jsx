@@ -63,14 +63,9 @@ export default function AdminLayout({ children }) {
       url: "",
     },
     {
-      id: "CHECKLIST_DELEGATION",
-      label: "Checklist Delegation",
-      url: "https://new-checklist-delegation.vercel.app/",
-    },
-    {
-      id: "DOCUMENT_MANAGER",
-      label: "Document Manager",
-      url: "https://document-manger.vercel.app/",
+      id: "DOCUMENT_SUBSCRIPTION",
+      label: "Document & Subsription",
+      url: "https://document-subscription.vercel.app/",
     },
     {
       id: "HR_FMS",
@@ -81,16 +76,6 @@ export default function AdminLayout({ children }) {
       id: "MAINTENANCE_MODULE",
       label: "Maintenance Module",
       url: "https://maintenance-module.vercel.app/",
-    },
-    {
-      id: "SUBSCRIPTION_MANAGER",
-      label: "Subscription Manager",
-      url: "https://subscription-manager-sbh.vercel.app/",
-    },
-    {
-      id: "PAYMENT_FMS",
-      label: "Payment FMS",
-      url: "https://payment-fms.vercel.app/",
     },
     ...systems.map((s) => ({
       id: s.systems,

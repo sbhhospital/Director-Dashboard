@@ -14,7 +14,7 @@ export const MOCK_USERS = [
         number: "+91 99815 17979",
         email_id: "dram@sbhhospital.com",
         status: "active",
-        system_access: "CHECKLIST & DELEGATION,HRMS,DOCUMENT MANAGER,MAINTENANCE MODULE,SUBSCRIPTION MANAGER,PAYMENT FMS"
+        system_access: "CHECKLIST & DELEGATION,HRMS, DOCUMENT & SUBSRIPTION, MAINTENANCE MODULE,PAYMENT FMS"
     },
     {
       id: 2,
@@ -36,10 +36,9 @@ export const MOCK_USERS = [
 export const MOCK_SYSTEMS = [
     { id: 1, systems: "CHECKLIST & DELEGATION", link: "https://new-checklist-deleagtion.vercel.app/" },
     { id: 2, systems: "HRMS", link: "https://sbh-hr-fms.vercel.app/" },
-    { id: 3, systems: "DOCUMENT MANAGER", link: "https://document-manger.vercel.app/" },
+    { id: 3, systems: "DOCUMENT & SUBSRIPTION", link: "https://document-subscription.vercel.app/"},
     { id: 4, systems: "MAINTENANCE MODULE", link: "https://maintenance-module.vercel.app/" },
-    { id: 5, systems: "SUBSCRIPTION MANAGER", link: "https://subscription-manager-sbh.vercel.app/" },
-    { id: 6, systems: "PAYMENT FMS", link: "https://payment-fms.vercel.app/" }
+    { id: 5, systems: "PAYMENT FMS", link: "https://payment-fms.vercel.app/" }
 ];
 
 // Mock API Functions
