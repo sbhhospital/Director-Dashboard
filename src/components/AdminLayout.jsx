@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { LogOut, X, Construction, Menu } from 'lucide-react'
+import { LogOut, X, Construction, Menu, User } from 'lucide-react'
 import { useNavigate } from "react-router-dom";
 import HomePage from "../pages/AllUsers";
 import { fetchSystemsApi, fetchUserDetailsApi, createSystemApi, updateSystemApi, deleteSystemApi } from "../api";
@@ -247,13 +247,20 @@ export default function AdminLayout({ children }) {
       >
         <div className="flex items-center justify-between px-4 py-5  ">
           {/* Logo with floating animation */}
+          {/* Logo with floating animation */}
           <div className="flex items-center motion-safe:animate-float relative w-28 h-10 ">
-            <img
-              src="/SBH logo 1.png"
-              alt="Logo"
-              className="h-8 w-56"
-            />
-
+            {(localStorage.getItem("role") === "admin" || username === "Am Sir") ? (
+              <img
+                src="/SBH logo 1.png"
+                alt="Logo"
+                className="h-8 w-56"
+              />
+            ) : (
+              <div className="flex items-center text-gray-700">
+                <User className="w-8 h-8 mr-2" />
+                <span className="font-bold text-lg">SBH Hospital</span>
+              </div>
+            )}
           </div>
 
           {/* User Avatar with emoji animation */}
@@ -410,90 +417,7 @@ export default function AdminLayout({ children }) {
           )}
         </main>
       </div>
-      {showSystemModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white w-full max-w-md rounded p-6">
-            <h2 className="text-xl font-bold mb-4">
-              {editSystem ? "Edit System" : "Add System"}
-            </h2>
 
-            <form
-              onSubmit={async (e) => {
-                e.preventDefault();
-                setIsSavingSystem(true);
-
-                try {
-                  const systems = e.target.systems.value.trim();
-                  const linkValue = e.target.link?.value?.trim();
-
-                  const payload = {
-                    systems,
-                    ...(linkValue ? { link: linkValue } : { link: null }),
-                  };
-
-                  if (editSystem) {
-                    await updateSystemApi(editSystem.id, payload);
-                    showToast("System updated");
-                  } else {
-                    await createSystemApi(payload);
-                    showToast("System added");
-                  }
-
-                  setShowSystemModal(false);
-                  setEditSystem(null);
-                  await loadSystems();
-                } catch (err) {
-                  showToast("Action failed", "error");
-                } finally {
-                  setIsSavingSystem(false);
-                }
-              }}
-              className="space-y-4"
-            >
-              <input
-                name="systems"
-                defaultValue={editSystem?.systems || ""}
-                placeholder="System Name"
-                className="w-full border p-2 rounded"
-                required
-              />
-
-              <input
-                name="link"
-                defaultValue={editSystem?.link || ""}
-                placeholder="System Link"
-                className="w-full border p-2 rounded"
-              />
-
-              <div className="flex justify-end gap-3">
-                <button
-                  type="button"
-                  onClick={() => setShowSystemModal(false)}
-                  className="px-4 py-2 border rounded"
-                  disabled={isSavingSystem}
-                >
-                  Cancel
-                </button>
-
-                <button
-                  type="submit"
-                  disabled={isSavingSystem}
-                  className={`px-4 py-2 rounded text-white flex items-center gap-2
-        ${isSavingSystem ? "bg-gray-400 cursor-not-allowed" : "bg-sky-600"}
-      `}
-                >
-                  {isSavingSystem && (
-                    <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  )}
-                  Save
-                </button>
-              </div>
-            </form>
-
-          </div>
-        </div>
-      )
-      }
 
       {
         showSystemModal && (

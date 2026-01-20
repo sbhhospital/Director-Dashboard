@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Award, Target, MapPin, Briefcase, Calendar, Layers, Clock } from "lucide-react";
+import { Award, Target, MapPin, Briefcase, Calendar, Layers, Clock, User } from "lucide-react";
 import searchIcon from "../assets/search-icon-logo.png";
 import { fetchUserDetailsApi, fetchSystemsApi, fetchAttendanceSummaryApi, patchSystemAccessApi } from "../api";
 
@@ -193,18 +193,20 @@ const HomePage = () => {
                                             {/* Avatar Section */}
                                             <div className="flex-shrink-0 mx-auto md:mx-0 relative group">
                                                 <div className="w-32 h-32 rounded-full p-1 bg-white shadow-lg ring-4 ring-white group-hover:scale-105 transition-transform duration-300">
-                                                    <img
-                                                        src={
-                                                            userDetails?.employee_id
-                                                                ? `/am sir.jpg`
-                                                                : "/user.png"
-                                                        }
-                                                        alt="Employee"
-                                                        className="w-full h-full rounded-full object-cover"
-                                                        onError={(e) => {
-                                                            e.target.src = "/user.png";
-                                                        }}
-                                                    />
+                                                    {userDetails?.user_name === "Am Sir" ? (
+                                                        <img
+                                                            src="/am sir.jpg"
+                                                            alt="Employee"
+                                                            className="w-full h-full rounded-full object-cover"
+                                                            onError={(e) => {
+                                                                e.target.style.display = 'none';
+                                                            }}
+                                                        />
+                                                    ) : (
+                                                        <div className="w-full h-full flex items-center justify-center bg-gray-100 rounded-full text-gray-400">
+                                                            <User className="w-16 h-16" />
+                                                        </div>
+                                                    )}
                                                 </div>
                                                 <div className={`absolute bottom-2 right-2 w-5 h-5 border-4 border-white rounded-full shadow-sm ${userDetails?.status === "active" ? "bg-green-500 animate-pulse" : "bg-red-500"}`}></div>
                                             </div>

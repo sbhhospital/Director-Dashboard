@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
+import { login } from "../utils/auth";
 
 
 const LoginPage = () => {
@@ -50,33 +51,20 @@ const LoginPage = () => {
     // Mock API simulation
     setTimeout(() => {
       const { username, password } = formData;
-      let userData = null;
+      const userData = login(username, password);
 
-      if (username === 'Am Sir' && password === 'Am123') {
-        userData = {
-          user_name: "Am Sir",
-          username: "Am Sir",
-          role: "admin",
-          email_id: "admin@example.com",
-          system_access: "CHECKLIST & DELEGATION,HRMS"
-        };
-      } else if (username.toLowerCase() === 'user' && password === 'user123') {
-        userData = {
-          user_name: "John Doe",
-          username: "user",
-          role: "user",
-          email_id: "john.doe@example.com",
-          system_access: "CHECKLIST & DELEGATION"
-        };
-      }
-
-      if (userData && (userData.user_name || userData.username)) {
+      if (userData) {
         setIsLoginLoading(false);
-        // Save data
+        // Save data - ensure we handle both old and structure
         localStorage.setItem("user-name", userData.user_name || userData.username);
         localStorage.setItem("role", userData.role || "");
         localStorage.setItem("email_id", userData.email_id || userData.email || "");
         localStorage.setItem("system_access", userData.system_access);
+
+        // Save mobile number if available
+        if (userData.mobile_number) {
+          localStorage.setItem("mobile_number", userData.mobile_number);
+        }
 
         navigate("/dashboard/admin", { replace: true });
       } else {

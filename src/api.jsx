@@ -19,17 +19,32 @@ export const MOCK_USERS = [
     {
       id: 2,
       employee_id: "EMP002",
-      user_name: "User",
-      department: "Operations",
-      designation: "Operations Manager",
+      user_name: "Jharna Ambulkar",
+      department: "Admin Department",
+      designation: "Process Coordinator",
       location: "Raipur, CG",
       joining_date: "Mar 2021",
       shift: "Morning Shift",
       role: "user",
-      number: "+91 98765 43213",
-      email_id: "user@example.com",
+      number: "+91 91796 36600",
+      email_id: "admin.executive@sbhhospital.com",
       status: "active",
       system_access: "CHECKLIST & DELEGATION"
+  },
+    {
+      id: 3,
+      employee_id: "EMP003",
+      user_name: "Geetanjali Deep",
+      department: "HR Department",
+      designation: "HR",
+      location: "Raipur, CG",
+      joining_date: "Mar 2021",
+      shift: "Morning Shift",
+      role: "user",
+      number: "+91 96444 92116",
+      email_id: "hr@sbhhospital.com",
+      status: "active",
+      system_access: "HRMS"
   }
 ];
 
