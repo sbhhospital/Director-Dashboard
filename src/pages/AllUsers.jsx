@@ -302,16 +302,7 @@ const HomePage = () => {
                                                                 </div>
                                                             </div>
 
-                                                            {/* Shift */}
-                                                            <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100 hover:bg-yellow-50 hover:border-yellow-100 transition-all group">
-                                                                <div className="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 group-hover:scale-110 transition-transform">
-                                                                    <Clock className="w-5 h-5" />
-                                                                </div>
-                                                                <div className="text-left">
-                                                                    <p className="text-gray-500 text-xs uppercase tracking-wider font-semibold">Shift</p>
-                                                                    <p className="font-bold text-gray-800">{userDetails.shift || "General"}</p>
-                                                                </div>
-                                                            </div>
+
                                                         </div>
                                                     </div>
                                                 ) : (
